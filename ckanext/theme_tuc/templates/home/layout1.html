@@ -1,0 +1,171 @@
+<div role="main">
+  <div class="main hero">
+    <div class="container">
+      <div class="row row1">
+        <div class="col-md-6 col1">
+          {% block promoted %}
+            {% snippet 'home/snippets/promoted.html' %}
+          {% endblock %}
+        </div>
+        <div class="col-md-6 col2 search_box">
+          {% block search %}
+            {% snippet 'home/snippets/search.html' %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container_heading">
+    <h1>Danh mục dữ liệu
+      <span>theo lĩnh vực</span>
+    </h1>
+    <p>
+      Cổng dữ liệu mở là điểm đầu mối truy cập thông tin, dữ liệu được thiết kế theo nền tảng để người dân, doanh nghiệp, tổ chức truy cập và khai thác
+    </p>
+  </div>
+
+  <div class="main row-new">
+    <div class="container new_group">
+      <h4>Lĩnh vực</h4>
+      <div class="col-md-2 col-xs-6 text-center box-new">
+        {% block featured_group %}
+          {% snippet 'home/snippets/featured_group.html' %}
+        {% endblock %}
+      </div>
+      <div class="col-md-6 col2" hidden>
+        {% block featured_organization %}
+          {% snippet 'home/snippets/featured_organization.html' %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+
+  <div class="container_box">
+    <div class="container_box-header">
+      <h1>Hiện trạng kết nối chia sẻ dữ liệu</h1>
+    </div>
+    
+    <div class="box-desc">
+      <div class="box-desc_1">
+        <h4>8.345M</h4>
+        <p>Số giao dịch năm</p>
+      </div>
+      <div class="box-desc_2">
+        <h4>20345M</h4>
+        <p>Giao dịch năm 2022</p>
+      </div>
+      <div class="box-desc_3">
+        <h4>143</h4>
+        <p>Số HTTT đã khai thác</p>
+      </div>
+      <div class="box-desc_4">
+        <h4>98</h4>
+        <p>Đơn vị kết nối</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container_list">
+    <div class="col-md-6 col1 container_list-one">
+      <img src="/images/home.png" alt="">
+    </div>
+    <div class="col-md-6 col2 container_list-two">
+      <div class="list_heading">
+        <h2>Danh sách
+          <span>bài viết</span>
+        </h2>
+      </div>
+      <div class="list_box">
+        <div class="list_desc">
+          <span class="icon_list">
+            <img src="/images/img-box/hn.png" alt="">
+          </span>
+          <div class="list_text">
+            <h5>Thành phố Hà Nội công bố danh sách đơn vị trực thuộc thành phố</h5>
+            <small>
+              <span>Hà Nội</span>
+              <span>20/08/2022</span>
+            </small>
+          </div>
+        </div>
+        <div class="list_desc">
+          <span class="icon_list">
+            <img src="/images/img-box/hn.png" alt="">
+          </span>
+          <div class="list_text">
+            <h5>Thành phố Hà Nội công bố danh sách đơn vị trực thuộc thành phố</h5>
+            <small>
+              <span>Hà Nội</span>
+              <span>20/08/2022</span>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="end-page">
+    <div class="end_heading">
+      <h2>
+        <span>Thống kê</span>
+        theo cơ quan nhà nước
+      </h2>
+    </div>
+    <div class="feature-layout">
+      <div class="feature-item">
+          <div class="feature-item-box">
+            <h4>
+              Thống kê theo cơ quan
+            </h4>
+            <!-- <div class="chart-layout">
+              <div class="chart-layout__item" style="--percent: 90%">Bộ tài chính</div>
+              <div class="chart-layout__item" style="--percent: 75%">Bộ tài nguyên và Môi trường</div>
+              <div class="chart-layout__item" style="--percent: 65%">Bộ giao thông vận tải</div>
+              <div class="chart-layout__item" style="--percent: 60%">Bộ Công Thương</div>
+              <div class="chart-layout__item" style="--percent: 50%">Bộ Kế hoạch và Đầu tư</div>
+              <div class="chart-layout__item" style="--percent: 45%">Bộ nông nghiệp và phát triển nông thôn</div>
+              <div class="chart-layout__item" style="--percent: 30%">BHXH Việt Nam</div>
+              <div class="chart-layout__item" style="--percent: 20%">Bộ xây dựng</div>
+          </div> -->
+          </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-item-box">
+          <h4>
+            Thống kê theo Lĩnh vực
+          </h4>
+          <div class="note">
+            <span>
+              <img src="/images/img-box/dc.png" alt="">
+              Dân cư</span>
+            <span>
+              <img src="/images/img-box/bh.png" alt="">
+              Bảo hiểm</span>
+            <span>
+              <img src="/images/img-box/dd.png" alt="">
+              Đất đai</span>
+          </div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-item-box">
+          <h4>
+            Thống kê theo số giao dịch
+          </h4>
+          <p>Số giao dịch trong năm 2022</p>
+          <div class="dot">
+            <span>
+              <img src="/images/img-box/data.png" alt="">
+              Xem dữ liệu</span>
+            <span>
+              <img src="/images/img-box/data1.png" alt="">
+              Tải dữ liệu</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+
+</div>

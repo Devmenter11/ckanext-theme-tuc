@@ -1,0 +1,7 @@
+
+        [ckan.plugins]
+        theme_tuc=ckanext.theme_tuc.plugin:ThemeTucPlugin
+
+        [babel.extractors]
+        ckan = ckan.lib.extract:extract_ckan
+    

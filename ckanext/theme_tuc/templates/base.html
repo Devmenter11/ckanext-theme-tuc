@@ -1,0 +1,15 @@
+{% ckan_extends %}
+
+{%block title%} {%endblock%}
+
+{% block custom_styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="/theme_tuc.css" />
+  <link rel="stylesheet" href="/custom_style.css" />
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script src="/register.js"></script>
+  <script src="/captcha.js"></script>
+{% endblock %}

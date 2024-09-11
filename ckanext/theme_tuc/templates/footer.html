@@ -1,0 +1,142 @@
+<footer class="site-footer">
+    <div role="main">
+        <div class="container">
+          <div class="row row2">
+            <div class="col-md-6 col1 footer_contact">
+              <section class="media-footer">
+                <img class="col1 media-footer" src="{% url_for_static('/images/logo2.png') %}" alt="Open DATAPORTAL" />
+                <div class="col2 opendata-footer">
+                  <b>Opendata</b><br>
+                  <strong>Portal</strong>
+                </div> 
+              </section>
+                <h2 class="site-footer-heading">
+                  <span>Cơ quan vận hành:</span> 
+                  <span>BỘ THÔNG TIN VÀ TRUYỀN THÔNG</span>
+                </h2>
+                <ul class="menu vertical site-footer_menu">
+                    <li>
+                      <a class="icon mail"><img src="/images/img-box/mail.png" alt=""></a>
+                      <a href="contact-us/" class="mail">
+                        dataportal@mic.gov.vn
+                      </a>
+                    </li>
+                    <br>
+                    <li>
+                      <a class="icon number"><img src="/images/img-box/phone.png" alt=""></a>
+                      <a href="contact-us/" class="number">
+                        024 37821776
+                      </a>
+                    </li>
+                    <br>
+                    <li>
+                      <a class="icon address"><img src="/images/img-box/adr.png" alt=""></a>
+                      <a href="" class="address">
+                        Số 68 Dương Đình Nghệ, Yên Hòa, Cầu Giấy, Hà Nội
+                      </a>
+                    </li>
+                    <br>
+                    <li class="copyright">
+                        <a href="">
+                          ©2022 All rights reserved by BKAV
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="app">
+              <p>Tải ứng dụng</p>
+              <div class="img_app">
+                <span>
+                  <a>
+                    <img src="/images/img-box/st.png">
+                  </a>
+                </span>
+                <span>
+                  <a>
+                    <img src="/images/img-box/pl.png">
+                  </a>
+                </span>
+              </div>
+            </div>
+            <div class="footer_box">
+              <div class="footer_text col2">
+                <ul class="about">
+                  <li>
+                    <h3>{{ _('Về cổng dữ liệu') }}</h3>
+                  </li>
+                  &nbsp;
+                  <br>
+                  <li>
+                    <a>{{ _('Điều khoản và chính sách') }}</a>
+                  </li>
+                  &nbsp;
+                  <br>
+                  <li>
+                    <a>{{ _('Hướng dẫn sử dụng') }}</a>
+                  </li>
+                  &nbsp;
+                  <br>
+                  <li>
+                    <a>{{ _('Câu hỏi thường gặp') }}</a>
+                  </li>
+                </ul>
+                <div class="social">
+                  <span class="fb">
+                    <a>
+                      <img src="/images/img-box/fb.png">
+                    </a>
+                  </span>
+                  <span class="ig">
+                    <a>
+                      <img src="/images/img-box/ig.png">
+                    </a>
+                  </span>
+                  <span class="tw">
+                    <a>
+                      <img src="/images/img-box/tw.png">
+                    </a>
+                  </span>
+                </div>
+              </div>
+  
+              <div class="footer_text col3">
+                  <ul class="about">
+                    <li>
+                      <h3>{{ _('Danh mục hệ thông') }}</h3>
+                    </li>
+                    &nbsp;
+                    <br>
+                    <li>
+                      <a>{{ _('Dữ liệu mở') }}</a>
+                    </li>
+                    &nbsp;
+                    <br>
+                    <li>
+                      <a>{{ _('Dữ liệu danh mục') }}</a>
+                    </li>
+                    &nbsp;
+                    <br>
+                    <li>
+                      <a>{{ _('Trình diễn dữ liệu') }}</a>
+                    </li>
+                  </ul>
+              </div>
+            </div>
+            
+            <div class="field-lang col2">
+              {% set current_lang = request.environ.CKAN_LANG %}
+              <ul class="form-inline form-select lang-select" action="{% url_for 'util.internal_redirect' %}" data-module="select-switch" method="POST">
+                <select id="field-lang-select" hidden name="url" data-module="autocomplete" data-module-dropdown-class="lang-dropdown" data-module-container-class="lang-container">
+                  {% for locale in h.get_available_locales() %}
+                    <option value="{% url_for h.current_url(), locale=locale.short_name %}" {% if locale.short_name == current_lang %}selected="selected"{% endif %}>
+                      {{ locale.display_name or locale.english_name }}
+                    </option>
+                  {% endfor %}
+                </select>
+                <button class="btn btn-default btn-home js-hide" hidden type="submit">{{ _('Go') }}</button>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+</footer>

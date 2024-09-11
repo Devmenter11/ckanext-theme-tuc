@@ -1,0 +1,120 @@
+{% ckan_extends %}
+
+{% block header_account %}
+<div class="account-masthead">
+  <div class="container">
+    {% block header_account_container_content %} {% if c.userobj %}
+    <div class="account avatar authed" data-module="me" data-me="{{ c.userobj.id }}">
+      <ul class="list-unstyled">
+        {% block header_account_logged %} {% if c.userobj.sysadmin %}
+        <li>
+          <a class="global" href="{{ h.url_for(controller='admin', action='index') }}" title="{{ _('Cài đặt Sysadmin') }}">
+            <i class="fa fa-gavel" aria-hidden="true"></i>
+            <span class="text">{{ _('Admin') }}</span>
+          </a>
+        </li>
+        {% endif %}
+        <li>
+          <a class="global" href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('Xem hồ sơ') }}">
+                  {{ h.user_image((c.user if c and c.user else ''), size=22) }}
+                  <span class="username">{{ c.userobj.display_name }}</span>
+                </a>
+        </li>
+        {% set new_activities = h.new_activities() %}
+        <li class="notifications {% if new_activities > 0 %}notifications-important{% endif %}">
+          {% set notifications_tooltip = ngettext('Bảng điều khiển (%(num)d new item)', 'Bảng điều khiển (%(num)d danh mục mới)', new_activities)
+          %}
+          <a class="global" href="{{ h.url_for('dashboard.index') }}" title="{{ notifications_tooltip }}">
+            <i class="fa fa-tachometer" aria-hidden="true"></i>
+            <span class="text">{{ _('Bảng điều khiển') }}</span>
+            <span class="badge">{{ new_activities }}</span>
+          </a>
+        </li>
+        {% block header_account_settings_link %}
+        <li>
+          <a class="global" href="{{ h.url_for('user.edit', id=c.userobj.name) }}" title="{{ _('Cài đặt cấu hình') }}">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+            <span class="text">{{ _('Cài đặt cấu hình') }}</span>
+          </a>
+        </li>
+        {% endblock %} 
+        
+        {% block header_account_log_out_link %}
+        <li>
+          <a class="global" href="{{ h.url_for('/user/_logout') }}" title="{{ _('Đăng xuất') }}">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+            <span class="text">{{ _('Đăng xuất') }}</span>
+          </a>
+        </li>
+        <li class="bell">
+          <a>
+            <img src="/images/img-box/bell.png" alt="">
+          </a>
+        </li>
+        {% endblock %} 
+        
+      {% endblock %}
+      </ul>
+    </div>
+    {% else %}
+    <nav class="account not-authed" aria-label="{{ _('Account') }}">
+      <ul class="list-unstyled">
+        {% block header_account_notlogged %}
+        <li class="login">{% link_for _('Đăng nhập'), named_route='user.login' %}</li>
+        {% if h.check_access('user_create') %}
+        <li class="register">{% link_for _('Đăng ký'), named_route='user.register', class_='sub' %}</li>
+        <li class="bell_login">
+          <a>
+            <img src="/images/img-box/bell.png" alt="">
+          </a>
+        </li>
+        {% endif %} {% endblock %}
+      </ul>
+    </nav>
+    {% endif %} {% endblock %}
+  </div>
+</div>
+{% endblock %}
+
+
+{% block header_logo %}
+	{% set url = h.url_for('home') %}
+	&nbsp;
+	&nbsp;
+	&nbsp;
+	&nbsp;
+	<a href="http://127.0.0.1:5000" style="text-decoration: none;">
+	&nbsp;
+	<img class="img-logo" src="/images/logo.png" alt="Bkav" title="Bkav Corporation">
+	</a>
+{% endblock %}
+
+<div class="collapse navbar-collapse" id="main-navigation-toggle">
+  
+  {% block header_site_navigation %}
+    <nav class="section navigation">
+      <ul class="nav nav-pills">
+    {% block header_site_navigation_tabs %}
+      {{ h.build_nav_main(
+      ('dataset.search', _('Dữ liệu mở')),
+      ('organization.index', _('Cơ quan')),
+      ('group.index', _('Lĩnh vực')),
+      ('stats.index', _('Thống kê')),
+      ('home.about', _('Tin tức')) ) }}
+      
+    {% endblock %}
+      </ul>
+    </nav>
+  {% endblock %}
+
+  {% block header_site_search %}
+
+    <form class="section site-search simple-input" hidden action="{% url_for controller='dataset', action='search' %}" method="get">
+      <div class="field">
+          <label for="field-sitewide-search">{% block header_site_search_label %}{{ _('Search Datasets') }}{% endblock %}</label>
+          <input id="field-sitewide-search" type="text" name="search" placeholder="{{ _('Search') }}" />
+          <button class="btn-search" type="submit" style="top:16px"><i class="fa fa-search"></i></button>
+        </div>
+    </form>
+  {% endblock %}
+</div>

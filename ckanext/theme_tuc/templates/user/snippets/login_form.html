@@ -1,0 +1,54 @@
+
+{% import 'macros/form.html' as form %}
+
+{% set username_error = true if error_summary %}
+{% set password_error = true if error_summary %}
+
+<form class="form_login" action="{{ action }}" method="post">
+  {{ form.errors(errors=error_summary) }}
+
+    {{ form.input('login', label=_("Tên đăng nhập"), id='field-login', value="", error=username_error, classes=["control-medium"]) }}
+    
+    {{ form.input('password', label=_("Mật khẩu"), id='field-password', type="password", value="", error=password_error, classes=["control-medium"]) }}
+
+    {{ form.checkbox('remember', label=_("Duy trì đăng nhập"), id='field-remember', checked=true, value="63072000") }}
+
+  <div class="form-actions">
+    {% block login_button %}
+    <button class="btn_login" type="submit">{{ _('Đăng nhập') }}</button>
+    {% endblock %}
+
+  {% block secondary_content %}
+  {% if h.check_access('user_create') %}
+  {% block help_register %}
+  <section class="module module-narrow module-shallow">
+    {% block help_register_inner %}
+      <div class="module-content">
+        <p class="action_register">
+          Bạn chưa có tài khoản?
+        {% block help_register_button %}
+          <a class="btn_register" href="{{ h.url_for('user.register') }}">{{ _('Đăng ký') }}</a>
+        {% endblock %}
+        </p>
+      </div>
+    {% endblock %}
+  </section>
+  {% endblock %}
+  {% endif %}
+
+  {% block help_forgotten %}
+  <section class="module module-narrow module-shallow">
+    {% block help_forgotten_inner %}
+    <div class="module-content">
+      <p class="action_forgot">
+        {% block help_forgotten_button %}
+        <a class="btn_forgot" href="{{ h.url_for('user.request_reset') }}">{{ _('Quên mật khẩu?') }}</a>
+        {% endblock %}
+      </p>
+    </div>
+    {% endblock %}
+  </section>
+  {% endblock %}
+{% endblock %}
+  </div>
+</form>

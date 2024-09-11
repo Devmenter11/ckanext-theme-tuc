@@ -1,0 +1,35 @@
+{% ckan_extends %}
+
+{% block subtitle %}{{ _('Register') }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="active">{{ h.nav_link(_('Đăng ký'), named_route='user.register') }}</li>
+{% endblock %}
+
+{% block primary_content %}
+  <article class="module">
+    <div class="module-content">
+      {% block primary_content_inner %}
+      <div class="form_register">
+        <h1 class="page-heading_register">
+          {% block page_heading %}{{ _('Đăng ký') }}{% endblock %}
+        </h1>      
+        {{ form | safe }}
+      </div>
+      {% endblock %}
+    </div>
+  </article>
+{% endblock %}
+
+{% block secondary_content %}
+  {% block help %}
+  <section class="module module-narrow module-shallow" hidden>
+    {% block help_inner %}
+    <h2 class="module-heading">{{ _('Why Sign Up?') }}</h2>
+    <div class="module-content">
+      <p>{% trans %}Create datasets, groups and other exciting things{% endtrans %}</p>
+    </div>
+    {% endblock %}
+  </section>
+  {% endblock %}
+{% endblock %}

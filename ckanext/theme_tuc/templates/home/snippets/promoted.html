@@ -1,0 +1,23 @@
+{% set intro = g.site_intro_text %}
+
+<div class="module-content box">
+  <section class="featured media-overlay">
+    <img class="col1 media-image" src="{% url_for_static('/images/logo2.png') %}" alt="Open DATAPORTAL" />
+    <div class="col2 opendata">
+      <b>Opendata</b><br>
+      <strong>Portal</strong>
+    </div> 
+  </section>
+  
+  <header class="box_heading">
+    {% if intro %}
+      {{ h.render_markdown(intro) }}
+    {% else %}
+      <h1 class="page-heading">{{ _("Cổng dữ liệu quốc gia DataPORTAL.GOV.VN") }}</h1>
+      <p class="text">
+        {% trans %} Điểm đầu mối công bố dữ liệu mở, cung cấp thông tin về chia sẻ dữ liệu của cơ quan nhà nước.
+        {% endtrans %}
+      </p>
+    {% endif %}
+  </header>
+</div>

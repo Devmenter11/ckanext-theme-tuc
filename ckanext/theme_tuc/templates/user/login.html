@@ -1,0 +1,53 @@
+{% ckan_extends %}
+
+{% block subtitle %}{{ _('login') }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="active">{{ h.nav_link(_('Đăng nhập'), named_route='user.login') }}</li>
+{% endblock %}
+
+{% block primary_content %}
+  <section class="module">
+    <div class="module-content">
+      <div class="content_login">
+        <h1 class="page-heading-login">{% block page_heading %}{{ _('Đăng nhập') }}{% endblock %}</h1>
+      {% block form %}
+        {% snippet "user/snippets/login_form.html", action=g.login_handler, error_summary=error_summary %}
+      {% endblock %}
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block secondary_content %}
+  {% if h.check_access('user_create') %}
+  {% block help_register %}
+  <section class="module module-narrow module-shallow" hidden>
+    {% block help_register_inner %}
+      <div class="module-content">
+        <p class="action">
+          Bạn chưa có tài khoản
+        {% block help_register_button %}
+          <a class="btn btn-default" href="{{ h.url_for('user.register') }}">{{ _('Đăng ký') }}</a>
+        {% endblock %}
+        </p>
+      </div>
+    {% endblock %}
+  </section>
+  {% endblock %}
+  {% endif %}
+
+  {% block help_forgotten %}
+  <section class="module module-narrow module-shallow" hidden>
+    {% block help_forgotten_inner %}
+    <div class="module-content">
+      <p class="action">
+        {% block help_forgotten_button %}
+        <a class="btn btn-default" href="{{ h.url_for('user.request_reset') }}">{{ _('Quên mật khẩu?') }}</a>
+        {% endblock %}
+      </p>
+    </div>
+    {% endblock %}
+  </section>
+  {% endblock %}
+{% endblock %}
